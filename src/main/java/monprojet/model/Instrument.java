@@ -22,8 +22,9 @@ public class Instrument {
     @OneToMany(mappedBy = "favoriteInstrument")
     private List<Artist> playerFavInstrument = new ArrayList<>();
 
-    public Instrument(String name) {
-        this.name = name;
+    public Instrument(int id, InstrumentType instrumentType) {
+        this.id = id;
+        this.instrumentType = instrumentType;
     }
 
     public Instrument() {
