@@ -1,19 +1,27 @@
 package monprojet.model;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Instrument {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NonNull
     private String name;
 
+    @NonNull
+    @Enumerated(EnumType.STRING)
     private InstrumentType instrumentType;
 
     @ManyToMany(mappedBy = "playableInstruments")
@@ -22,51 +30,4 @@ public class Instrument {
     @OneToMany(mappedBy = "favoriteInstrument")
     private List<Artist> playerFavInstrument = new ArrayList<>();
 
-    public Instrument(String name, InstrumentType instrumentType) {
-        this.name = name;
-        this.instrumentType = instrumentType;
-    }
-
-    public Instrument() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public InstrumentType getInstrumentType() {
-        return instrumentType;
-    }
-
-    public void setInstrumentType(InstrumentType instrumentType) {
-        this.instrumentType = instrumentType;
-    }
-
-    public List<Artist> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Artist> players) {
-        this.players = players;
-    }
-
-    public List<Artist> getPlayerFavInstrument() {
-        return playerFavInstrument;
-    }
-
-    public void setPlayerFavInstrument(List<Artist> playerFavInstrument) {
-        this.playerFavInstrument = playerFavInstrument;
-    }
 }

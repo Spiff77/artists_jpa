@@ -1,19 +1,28 @@
 package monprojet.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Artist {
+@NoArgsConstructor
+@RequiredArgsConstructor
+public @Data class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NonNull
     private String bandName;
+    @NonNull
     private int size;
+    @NonNull
     private String country;
 
     @OneToOne
@@ -29,84 +38,9 @@ public class Artist {
     @ManyToOne()
     Instrument favoriteInstrument;
 
-    public Artist() {
-    }
-
-    public Artist(String bandName, int size, String country) {
-        this.bandName = bandName;
-        this.size = size;
-        this.country = country;
-    }
 
     public void addJouableInstrument(Instrument i){
         this.playableInstruments.add(i);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getBandName() {
-        return bandName;
-    }
-
-    public void setBandName(String bandName) {
-        this.bandName = bandName;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public SacemRegistration getSacemRegistration() {
-        return sacemRegistration;
-    }
-
-    public void setSacemRegistration(SacemRegistration sacemRegistration) {
-        this.sacemRegistration = sacemRegistration;
-    }
-
-    public List<Instrument> getPlayableInstruments() {
-        return playableInstruments;
-    }
-
-    public void setPlayableInstruments(List<Instrument> playableInstruments) {
-        this.playableInstruments = playableInstruments;
-    }
-
-    public Instrument getFavoriteInstrument() {
-        return favoriteInstrument;
-    }
-
-    public void setFavoriteInstrument(Instrument favoriteInstrument) {
-        this.favoriteInstrument = favoriteInstrument;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Artist{");
-        sb.append("id=").append(id);
-        sb.append(", bandName='").append(bandName).append('\'');
-        sb.append(", size=").append(size);
-        sb.append(", country='").append(country).append('\'');
-        sb.append(", sacemRegistration=").append(sacemRegistration.getId());
-        sb.append('}');
-        return sb.toString();
-    }
 }
