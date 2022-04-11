@@ -38,6 +38,10 @@ public class Artist {
         this.country = country;
     }
 
+    public void addJouableInstrument(Instrument i){
+        this.playableInstruments.add(i);
+    }
+
     public int getId() {
         return id;
     }
@@ -92,5 +96,17 @@ public class Artist {
 
     public void setFavoriteInstrument(Instrument favoriteInstrument) {
         this.favoriteInstrument = favoriteInstrument;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Artist{");
+        sb.append("id=").append(id);
+        sb.append(", bandName='").append(bandName).append('\'');
+        sb.append(", size=").append(size);
+        sb.append(", country='").append(country).append('\'');
+        sb.append(", sacemRegistration=").append(sacemRegistration.getId());
+        sb.append('}');
+        return sb.toString();
     }
 }
